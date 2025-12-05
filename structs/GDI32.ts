@@ -21,7 +21,6 @@ import type {
   FLOAT,
   FONTENUMPROCA,
   FONTENUMPROCW,
-  GDIMARSHALLOC_,
   GOBJENUMPROC,
   HANDLE,
   HBITMAP,
@@ -32,7 +31,6 @@ import type {
   HFONT,
   HGDIOBJ,
   HGLOBAL,
-  HGLRC,
   HMETAFILE,
   HPALETTE,
   HPEN,
@@ -89,12 +87,10 @@ import type {
   MFENUMPROC,
   PALETTEENTRY_,
   PFLOAT,
-  PGDIREGISTERDDRAWPACKET,
   PIXELFORMATDESCRIPTOR_,
   POINT_,
   POLYTEXTA_,
   POLYTEXTW_,
-  PROC,
   PTRIVERTEX,
   PVOID,
   RECT_,
@@ -102,7 +98,6 @@ import type {
   RGNDATA_,
   UINT,
   ULONG,
-  VOID,
   XFORM_,
 } from '../types/GDI32';
 
@@ -198,11 +193,10 @@ class GDI32 {
     AbortDoc: { args: [FFIType.ptr], returns: FFIType.i32 },
     AbortPath: { args: [FFIType.ptr], returns: FFIType.i32 },
     AddFontMemResourceEx: { args: [FFIType.ptr, FFIType.u32, FFIType.ptr, FFIType.ptr], returns: FFIType.ptr },
-    AddFontResourceA: { args: [], returns: FFIType.i32 },
+    AddFontResourceA: { args: [FFIType.ptr], returns: FFIType.i32 },
     AddFontResourceExA: { args: [FFIType.ptr, FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
     AddFontResourceExW: { args: [FFIType.ptr, FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
-    AddFontResourceW: { args: [], returns: FFIType.i32 },
-    AlphaBlend: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.ptr], returns: FFIType.i32 },
+    AddFontResourceW: { args: [FFIType.ptr], returns: FFIType.i32 },
     AngleArc: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.u32, FFIType.f32, FFIType.f32], returns: FFIType.i32 },
     AnimatePalette: { args: [FFIType.ptr, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
     Arc: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32], returns: FFIType.i32 },
@@ -222,8 +216,8 @@ class GDI32 {
     CombineTransform: { args: [FFIType.ptr, FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     CopyEnhMetaFileA: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.ptr },
     CopyEnhMetaFileW: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.ptr },
-    CopyMetaFileA: { args: [], returns: FFIType.ptr },
-    CopyMetaFileW: { args: [], returns: FFIType.ptr },
+    CopyMetaFileA: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.ptr },
+    CopyMetaFileW: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.ptr },
     CreateBitmap: { args: [FFIType.i32, FFIType.i32, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.ptr },
     CreateBitmapIndirect: { args: [FFIType.ptr], returns: FFIType.ptr },
     CreateBrushIndirect: { args: [FFIType.ptr], returns: FFIType.ptr },
@@ -244,8 +238,8 @@ class GDI32 {
     CreateEnhMetaFileW: { args: [FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.ptr], returns: FFIType.ptr },
     CreateFontA: { args: [FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.ptr },
     CreateFontIndirectA: { args: [FFIType.ptr], returns: FFIType.ptr },
-    CreateFontIndirectExA: { args: [], returns: FFIType.ptr },
-    CreateFontIndirectExW: { args: [], returns: FFIType.ptr },
+    CreateFontIndirectExA: { args: [FFIType.ptr], returns: FFIType.ptr },
+    CreateFontIndirectExW: { args: [FFIType.ptr], returns: FFIType.ptr },
     CreateFontIndirectW: { args: [FFIType.ptr], returns: FFIType.ptr },
     CreateFontW: { args: [FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.ptr },
     CreateHalftonePalette: { args: [FFIType.ptr], returns: FFIType.ptr },
@@ -310,12 +304,8 @@ class GDI32 {
     GdiFlush: { args: [], returns: FFIType.i32 },
     GdiGetBatchLimit: { args: [], returns: FFIType.u32 },
     GdiGradientFill: { args: [FFIType.ptr, FFIType.ptr, FFIType.u32, FFIType.ptr, FFIType.u32, FFIType.u32], returns: FFIType.i32 },
-    GdiMarshal: { args: [FFIType.u32, FFIType.ptr, FFIType.ptr, FFIType.u32], returns: FFIType.void },
-    GdiMarshalSize: { args: [], returns: FFIType.u32 },
-    GdiRegisterDdraw: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     GdiSetBatchLimit: { args: [FFIType.u32], returns: FFIType.u32 },
     GdiTransparentBlt: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.u32], returns: FFIType.i32 },
-    GdiUnmarshal: { args: [FFIType.ptr, FFIType.u32], returns: FFIType.ptr },
     GetArcDirection: { args: [FFIType.ptr], returns: FFIType.i32 },
     GetAspectRatioFilterEx: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     GetBitmapBits: { args: [FFIType.ptr, FFIType.i32, FFIType.ptr], returns: FFIType.i32 },
@@ -385,7 +375,7 @@ class GDI32 {
     GetPixelFormat: { args: [FFIType.ptr], returns: FFIType.i32 },
     GetPolyFillMode: { args: [FFIType.ptr], returns: FFIType.i32 },
     GetRandomRgn: { args: [FFIType.ptr, FFIType.ptr, FFIType.i32], returns: FFIType.i32 },
-    GetRasterizerCaps: { args: [FFIType.u32], returns: FFIType.i32 },
+    GetRasterizerCaps: { args: [FFIType.ptr, FFIType.u32], returns: FFIType.i32 },
     GetRegionData: { args: [FFIType.ptr, FFIType.u32, FFIType.ptr], returns: FFIType.u32 },
     GetRgnBox: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     GetROP2: { args: [FFIType.ptr], returns: FFIType.i32 },
@@ -410,7 +400,6 @@ class GDI32 {
     GetWindowOrgEx: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     GetWinMetaFileBits: { args: [FFIType.ptr, FFIType.u32, FFIType.ptr, FFIType.i32, FFIType.ptr], returns: FFIType.u32 },
     GetWorldTransform: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
-    GradientFill: { args: [FFIType.ptr, FFIType.ptr, FFIType.u32, FFIType.ptr, FFIType.u32, FFIType.u32], returns: FFIType.i32 },
     IntersectClipRect: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32], returns: FFIType.i32 },
     InvertRgn: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     LineDDA: { args: [FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
@@ -518,34 +507,14 @@ class GDI32 {
     StretchDIBits: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.ptr, FFIType.u32, FFIType.u32], returns: FFIType.i32 },
     StrokeAndFillPath: { args: [FFIType.ptr], returns: FFIType.i32 },
     StrokePath: { args: [FFIType.ptr], returns: FFIType.i32 },
-    SwapBuffers: { args: [], returns: FFIType.i32 },
+    SwapBuffers: { args: [FFIType.ptr], returns: FFIType.i32 },
     TextOutA: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.i32], returns: FFIType.i32 },
     TextOutW: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.i32], returns: FFIType.i32 },
     TranslateCharsetInfo: { args: [FFIType.ptr, FFIType.ptr, FFIType.u32], returns: FFIType.i32 },
-    TransparentBlt: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.i32, FFIType.u32], returns: FFIType.i32 },
     UnrealizeObject: { args: [FFIType.ptr], returns: FFIType.i32 },
     UpdateColors: { args: [FFIType.ptr], returns: FFIType.i32 },
     UpdateICMRegKeyA: { args: [FFIType.u32, FFIType.ptr, FFIType.ptr, FFIType.u32], returns: FFIType.i32 },
     UpdateICMRegKeyW: { args: [FFIType.u32, FFIType.ptr, FFIType.ptr, FFIType.u32], returns: FFIType.i32 },
-    wglCopyContext: { args: [], returns: FFIType.i32 },
-    wglCreateContext: { args: [], returns: FFIType.ptr },
-    wglCreateLayerContext: { args: [], returns: FFIType.ptr },
-    wglDeleteContext: { args: [], returns: FFIType.i32 },
-    wglDescribeLayerPlane: { args: [], returns: FFIType.i32 },
-    wglGetCurrentContext: { args: [], returns: FFIType.ptr },
-    wglGetCurrentDC: { args: [], returns: FFIType.ptr },
-    wglGetLayerPaletteEntries: { args: [], returns: FFIType.i32 },
-    wglGetProcAddress: { args: [], returns: FFIType.ptr },
-    wglMakeCurrent: { args: [], returns: FFIType.i32 },
-    wglRealizeLayerPalette: { args: [], returns: FFIType.i32 },
-    wglSetLayerPaletteEntries: { args: [], returns: FFIType.i32 },
-    wglShareLists: { args: [], returns: FFIType.i32 },
-    wglSwapLayerBuffers: { args: [], returns: FFIType.i32 },
-    wglSwapMultipleBuffers: { args: [], returns: FFIType.u32 },
-    wglUseFontBitmapsA: { args: [], returns: FFIType.i32 },
-    wglUseFontBitmapsW: { args: [], returns: FFIType.i32 },
-    wglUseFontOutlinesA: { args: [], returns: FFIType.i32 },
-    wglUseFontOutlinesW: { args: [], returns: FFIType.i32 },
     WidenPath: { args: [FFIType.ptr], returns: FFIType.i32 },
   } as const satisfies Record<string, FFIFunction>;
 
@@ -565,8 +534,8 @@ class GDI32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-addfontresourcea
-  public static AddFontResourceA(): int {
-    return GDI32.Load('AddFontResourceA')();
+  public static AddFontResourceA(lpFileName: LPCSTR): int {
+    return GDI32.Load('AddFontResourceA')(lpFileName);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-addfontresourceexa
@@ -580,13 +549,8 @@ class GDI32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-addfontresourcew
-  public static AddFontResourceW(): int {
-    return GDI32.Load('AddFontResourceW')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-alphablend
-  public static AlphaBlend(hdcDest: HDC, xoriginDest: int, yoriginDest: int, wDest: int, hDest: int, hdcSrc: HDC, xoriginSrc: int, yoriginSrc: int, wSrc: int, hSrc: int, ftn: BLENDFUNCTION): BOOL {
-    return GDI32.Load('AlphaBlend')(hdcDest, xoriginDest, yoriginDest, wDest, hDest, hdcSrc, xoriginSrc, yoriginSrc, wSrc, hSrc, ftn);
+  public static AddFontResourceW(lpFileName: LPCWSTR): int {
+    return GDI32.Load('AddFontResourceW')(lpFileName);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-anglearc
@@ -685,13 +649,13 @@ class GDI32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-copymetafilea
-  public static CopyMetaFileA(): HMETAFILE {
-    return GDI32.Load('CopyMetaFileA')();
+  public static CopyMetaFileA(hmf: HMETAFILE, lpFileName: LPCSTR): HMETAFILE {
+    return GDI32.Load('CopyMetaFileA')(hmf, lpFileName);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-copymetafilew
-  public static CopyMetaFileW(): HMETAFILE {
-    return GDI32.Load('CopyMetaFileW')();
+  public static CopyMetaFileW(hmf: HMETAFILE, lpFileName: LPCWSTR): HMETAFILE {
+    return GDI32.Load('CopyMetaFileW')(hmf, lpFileName);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createbitmap
@@ -810,13 +774,13 @@ class GDI32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfontindirectexa
-  public static CreateFontIndirectExA(): HFONT {
-    return GDI32.Load('CreateFontIndirectExA')();
+  public static CreateFontIndirectExA(lpelfe: LPVOID): HFONT {
+    return GDI32.Load('CreateFontIndirectExA')(lpelfe);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfontindirectexw
-  public static CreateFontIndirectExW(): HFONT {
-    return GDI32.Load('CreateFontIndirectExW')();
+  public static CreateFontIndirectExW(lpelfe: LPVOID): HFONT {
+    return GDI32.Load('CreateFontIndirectExW')(lpelfe);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfontindirectw
@@ -1154,21 +1118,6 @@ class GDI32 {
     return GDI32.Load('GdiGradientFill')(hdc, pVertex, nVertex, pMesh, nCount, ulMode);
   }
 
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gdimarshal
-  public static GdiMarshal(dwProcessIdTo: DWORD, hGdiObj: HGDIOBJ, pData: PVOID, ulFlags: ULONG): VOID {
-    return GDI32.Load('GdiMarshal')(dwProcessIdTo, hGdiObj, pData, ulFlags);
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gdimarshalsize
-  public static GdiMarshalSize(): ULONG {
-    return GDI32.Load('GdiMarshalSize')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gdiregisterddraw
-  public static GdiRegisterDdraw(pPacket: PGDIREGISTERDDRAWPACKET, ppfnGdiAlloc: GDIMARSHALLOC_): BOOL {
-    return GDI32.Load('GdiRegisterDdraw')(pPacket, ppfnGdiAlloc);
-  }
-
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gdisetbatchlimit
   public static GdiSetBatchLimit(dw: DWORD): DWORD {
     return GDI32.Load('GdiSetBatchLimit')(dw);
@@ -1177,11 +1126,6 @@ class GDI32 {
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gditransparentblt
   public static GdiTransparentBlt(hdcDest: HDC, xoriginDest: int, yoriginDest: int, wDest: int, hDest: int, hdcSrc: HDC, xoriginSrc: int, yoriginSrc: int, wSrc: int, hSrc: int, crTransparent: UINT): BOOL {
     return GDI32.Load('GdiTransparentBlt')(hdcDest, xoriginDest, yoriginDest, wDest, hDest, hdcSrc, xoriginSrc, yoriginSrc, wSrc, hSrc, crTransparent);
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gdiunmarshal
-  public static GdiUnmarshal(pData: PVOID, ulFlags: ULONG): HGDIOBJ {
-    return GDI32.Load('GdiUnmarshal')(pData, ulFlags);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getarcdirection
@@ -1530,8 +1474,8 @@ class GDI32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getrasterizercaps
-  public static GetRasterizerCaps(cjBytes: UINT): BOOL {
-    return GDI32.Load('GetRasterizerCaps')(cjBytes);
+  public static GetRasterizerCaps(lpraststat: LPVOID, cjBytes: UINT): BOOL {
+    return GDI32.Load('GetRasterizerCaps')(lpraststat, cjBytes);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getregiondata
@@ -1652,11 +1596,6 @@ class GDI32 {
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getworldtransform
   public static GetWorldTransform(hdc: HDC, lpxf: LPXFORM): BOOL {
     return GDI32.Load('GetWorldTransform')(hdc, lpxf);
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-gradientfill
-  public static GradientFill(hdc: HDC, pVertex: PTRIVERTEX, nVertex: ULONG, pMesh: PVOID, nMesh: ULONG, ulMode: ULONG): BOOL {
-    return GDI32.Load('GradientFill')(hdc, pVertex, nVertex, pMesh, nMesh, ulMode);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-intersectcliprect
@@ -2195,8 +2134,8 @@ class GDI32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-swapbuffers
-  public static SwapBuffers(): BOOL {
-    return GDI32.Load('SwapBuffers')();
+  public static SwapBuffers(hdc: HDC): BOOL {
+    return GDI32.Load('SwapBuffers')(hdc);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-textouta
@@ -2212,11 +2151,6 @@ class GDI32 {
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-translatecharsetinfo
   public static TranslateCharsetInfo(lpSrc: DWORD_, lpCs: LPCHARSETINFO, dwFlags: DWORD): BOOL {
     return GDI32.Load('TranslateCharsetInfo')(lpSrc, lpCs, dwFlags);
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-transparentblt
-  public static TransparentBlt(hdcDest: HDC, xoriginDest: int, yoriginDest: int, wDest: int, hDest: int, hdcSrc: HDC, xoriginSrc: int, yoriginSrc: int, wSrc: int, hSrc: int, crTransparent: UINT): BOOL {
-    return GDI32.Load('TransparentBlt')(hdcDest, xoriginDest, yoriginDest, wDest, hDest, hdcSrc, xoriginSrc, yoriginSrc, wSrc, hSrc, crTransparent);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-unrealizeobject
@@ -2237,101 +2171,6 @@ class GDI32 {
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-updateicmregkeyw
   public static UpdateICMRegKeyW(reserved: DWORD, lpszCMID: LPWSTR, lpszFileName: LPWSTR, command: UINT): BOOL {
     return GDI32.Load('UpdateICMRegKeyW')(reserved, lpszCMID, lpszFileName, command);
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglcopycontext
-  public static wglCopyContext(): BOOL {
-    return GDI32.Load('wglCopyContext')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglcreatecontext
-  public static wglCreateContext(): HGLRC {
-    return GDI32.Load('wglCreateContext')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglcreatelayercontext
-  public static wglCreateLayerContext(): HGLRC {
-    return GDI32.Load('wglCreateLayerContext')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wgldeletecontext
-  public static wglDeleteContext(): BOOL {
-    return GDI32.Load('wglDeleteContext')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wgldescribelayerplane
-  public static wglDescribeLayerPlane(): BOOL {
-    return GDI32.Load('wglDescribeLayerPlane')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglgetcurrentcontext
-  public static wglGetCurrentContext(): HGLRC {
-    return GDI32.Load('wglGetCurrentContext')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglgetcurrentdc
-  public static wglGetCurrentDC(): HDC {
-    return GDI32.Load('wglGetCurrentDC')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglgetlayerpaletteentries
-  public static wglGetLayerPaletteEntries(): int {
-    return GDI32.Load('wglGetLayerPaletteEntries')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglgetprocaddress
-  public static wglGetProcAddress(): PROC {
-    return GDI32.Load('wglGetProcAddress')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglmakecurrent
-  public static wglMakeCurrent(): BOOL {
-    return GDI32.Load('wglMakeCurrent')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglrealizelayerpalette
-  public static wglRealizeLayerPalette(): BOOL {
-    return GDI32.Load('wglRealizeLayerPalette')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglsetlayerpaletteentries
-  public static wglSetLayerPaletteEntries(): int {
-    return GDI32.Load('wglSetLayerPaletteEntries')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglsharelists
-  public static wglShareLists(): BOOL {
-    return GDI32.Load('wglShareLists')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglswaplayerbuffers
-  public static wglSwapLayerBuffers(): BOOL {
-    return GDI32.Load('wglSwapLayerBuffers')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglswapmultiplebuffers
-  public static wglSwapMultipleBuffers(): DWORD {
-    return GDI32.Load('wglSwapMultipleBuffers')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglusefontbitmapsa
-  public static wglUseFontBitmapsA(): BOOL {
-    return GDI32.Load('wglUseFontBitmapsA')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglusefontbitmapsw
-  public static wglUseFontBitmapsW(): BOOL {
-    return GDI32.Load('wglUseFontBitmapsW')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglusefontoutlinesa
-  public static wglUseFontOutlinesA(): BOOL {
-    return GDI32.Load('wglUseFontOutlinesA')();
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-wglusefontoutlinesw
-  public static wglUseFontOutlinesW(): BOOL {
-    return GDI32.Load('wglUseFontOutlinesW')();
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-widenpath
