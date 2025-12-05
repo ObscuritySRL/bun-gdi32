@@ -37,11 +37,14 @@
   ],
   "files": [
     "index.ts",
+    "runtime/*.ts",
     "structs/*.ts",
     "types/*.ts",
     "README.md"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "runtime/extensions.ts"
+  ],
   "engines": {
     "bun": ">=1.1.0"
   },
